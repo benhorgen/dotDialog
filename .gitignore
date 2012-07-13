@@ -2,5 +2,8 @@
 bin
 obj
 
+*.userprefs
+
+
 # mstest test results
 TestResults
