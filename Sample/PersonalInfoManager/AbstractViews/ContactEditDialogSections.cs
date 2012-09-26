@@ -52,7 +52,12 @@ namespace dotDialog.Sample.PersonalInfoManger
 			// addresses
 			var addressSec = new Section() { Caption = "Addresses" };
 			sections.Add(addressSec);
+#if MONOTOUCH
 			addressSec.Add(new MultilineElement("Home", address));
+#endif
+#if ANDROID
+			addressSec.Add(new MultilineEntryElement("Home", address));
+#endif
 			
 			return sections.ToArray();
 		}
@@ -71,7 +76,12 @@ namespace dotDialog.Sample.PersonalInfoManger
 						else if (e.Caption == "Last Name") { c.LastName = ((EntryElement)e).Value; }
 						else if (s.Caption == "Phone Numbers" && e.Caption == "Work") { c.Phone = ((EntryElement)e).Value; }
 						else if (s.Caption == "Email Addresses" && e.Caption == "Work") { c.Email = ((EntryElement)e).Value; }
+#if MONOTOUCH
 						else if (s.Caption == "Addresses" && e.Caption == "Home") { c.Address = ((MultilineElement)e).Value; }
+#endif
+#if ANDROID
+						else if (s.Caption == "Addresses" && e.Caption == "Home") { c.Address = ((MultilineEntryElement)e).Value; }
+#endif
 					}
 				}
 			}

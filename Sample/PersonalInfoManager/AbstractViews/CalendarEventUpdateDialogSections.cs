@@ -16,7 +16,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 			List<Section> sections = new List<Section>(); 
 			var section = new Section();
 			sections.Add(section);
-			
+#if MONOTOUCH
 			int typeOption;
 			for (typeOption = 0; typeOption < TypeOptions.Length; typeOption++) {
 				if (TypeOptions[typeOption] == Model.Type) { break; }
@@ -28,7 +28,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 			optionsSection.AddAll(options);
 			var grp = new RootElement("Type", new RadioGroup(typeOption)) { optionsSection };
 			section.Add(grp);
-			
+#endif
 			var details = new Section("Details");
 			sections.Add(details);
 			details.Add(new EntryElement("Subject", "no subject entered", Model.Subject));
@@ -38,10 +38,11 @@ namespace dotDialog.Sample.PersonalInfoManger
 			if (endTime.Ticks == 0) { endTime = Model.StartTime.AddHours(1); }
 			details.Add(new DateTimeElement("End Time", endTime));
 			details.Add(new EntryElement("Location", "no location entered", Model.Location));
-			
+
 			var additionalDetails = new Section("Additional Details");
 			sections.Add(additionalDetails);
-			
+
+#if MONOTOUCH
 			int priorityOption;
 			for (priorityOption = 0; priorityOption < PriorityOptions.Length; priorityOption++) {
 				if (PriorityOptions[priorityOption] == Model.Priority) { break; }
@@ -53,7 +54,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 			optionsSection.AddAll(options);
 			var priorityRoot = new RootElement ("Priority", new RadioGroup(priorityOption)){optionsSection};
 			additionalDetails.Add(priorityRoot);
-			
+#endif	
 			return sections;
 		}
 

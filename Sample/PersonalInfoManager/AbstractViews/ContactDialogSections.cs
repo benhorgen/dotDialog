@@ -49,7 +49,12 @@ namespace dotDialog.Sample.PersonalInfoManger
 			var addressSec = new Section() { Caption = "Addresses" };
 			sections.Add(addressSec);
 			if (addresses != null && addresses.Count > 0)
+#if MONOTOUCH
 				addressSec.Add(new MultilineElement("Home", addresses[0]));
+#endif
+#if ANDROID
+			addressSec.Add(new MultilineEntryElement("Home", addresses[0]));
+#endif
 			
 			return sections.ToArray();
 		}

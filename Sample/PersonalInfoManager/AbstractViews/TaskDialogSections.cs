@@ -22,9 +22,12 @@ namespace dotDialog.Sample.PersonalInfoManger
 			
 			string dateValue = task.Date.ToShortTimeString();
 			detailSection.Add(new StringElement("Date", dateValue));
-			
+#if MONOTOUCH
 			detailSection.Add(new StyledMultilineElement("Description", task.Description));
-			
+#endif
+#if ANDROID
+			detailSection.Add(new MultilineEntryElement("Description", task.Description));
+#endif
 			return sections.ToArray();
 		}
 	}
