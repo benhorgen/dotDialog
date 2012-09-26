@@ -14,4 +14,21 @@ This is a work in progress.
 
 
 
+This repo includes 3 submodules
+
+Android.Dialog by githubber @sam-lippert
+
+MonoTouch.Dialg by githubber  @migueldeicaza
+
+MonoCross_1.02 hosted by githubber @benhorgen
+
+
+**After cloning the repo, don't forget to clone the submodules.  
+
+Use the following commands from the root folder:
+>'git submodule init'
+>'git submodule update'
+
+
+
 
