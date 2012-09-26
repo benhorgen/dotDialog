@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A8F5264-3E15-4159-816A-5BE53CEFF62B}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>dotDialog.Sample.PersonalInfoManger.Android</RootNamespace>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AssemblyName>PIM.Android</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashActivity.cs" />
+    <Compile Include="Views\ContactListActivity.cs" />
+    <Compile Include="Views\ContactActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\layout\Splash.xml" />
+    <AndroidResource Include="Resources\layout\dialog_achievements.xml" />
+    <AndroidResource Include="Resources\layout\dialog_boolfieldleft.xml" />
+    <AndroidResource Include="Resources\layout\dialog_boolfieldright.xml" />
+    <AndroidResource Include="Resources\layout\dialog_boolfieldsubleft.xml" />
+    <AndroidResource Include="Resources\layout\dialog_boolfieldsubright.xml" />
+    <AndroidResource Include="Resources\layout\dialog_button.xml" />
+    <AndroidResource Include="Resources\layout\dialog_datefield.xml" />
+    <AndroidResource Include="Resources\layout\dialog_fieldsetlabel.xml" />
+    <AndroidResource Include="Resources\layout\dialog_floatimage.xml" />
+    <AndroidResource Include="Resources\layout\dialog_html.xml" />
+    <AndroidResource Include="Resources\layout\dialog_labeldisclosure.xml" />
+    <AndroidResource Include="Resources\layout\dialog_labelfieldbelow.xml" />
+    <AndroidResource Include="Resources\layout\dialog_labelfieldright.xml" />
+    <AndroidResource Include="Resources\layout\dialog_multiline_labelfieldbelow.xml" />
+    <AndroidResource Include="Resources\layout\dialog_onofffieldright.xml" />
+    <AndroidResource Include="Resources\layout\dialog_panel.xml" />
+    <AndroidResource Include="Resources\layout\dialog_root.xml" />
+    <AndroidResource Include="Resources\layout\dialog_selectlist.xml" />
+    <AndroidResource Include="Resources\layout\dialog_selectlistfield.xml" />
+    <AndroidResource Include="Resources\layout\dialog_textarea.xml" />
+    <AndroidResource Include="Resources\layout\dialog_textfieldbelow.xml" />
+    <AndroidResource Include="Resources\layout\dialog_textfieldright.xml" />
+    <AndroidResource Include="Resources\drawable\dialog_expander_ic_minimized.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_default_holo_dark.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_default_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_default_holo_dark.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_default_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_default_holo_dark.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_default_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable\Icon_36.png" />
+    <AndroidResource Include="Resources\drawable\Icon_48.png" />
+    <AndroidResource Include="Resources\layout\list_view.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalInfoManager\PIM.M4A.csproj">
+      <Project>{408C1B45-7795-4FB7-9633-789AF32663D3}</Project>
+      <Name>PIM.M4A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
+      <Project>{0D2CC54A-4716-40B9-8110-453F528810FC}</Project>
+      <Name>MonoCross.Navigation.MD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Droid\MonoCross.Droid.csproj">
+      <Project>{B8448676-C9FE-42A3-A30B-F2FFA096E7D9}</Project>
+      <Name>MonoCross.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Android.Dialog\Android.Dialog.csproj">
+      <Project>{33044C7B-47A4-4113-A61A-EB429407F818}</Project>
+      <Name>Android.Dialog</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

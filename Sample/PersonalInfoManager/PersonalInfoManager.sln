@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIM.Touch", "..\PersonalInf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCross.Touch", "..\MonoCross.Touch\MonoCross.Touch.csproj", "{4F743690-64BD-4B1F-BD75-872C910A94E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIM.Android", "..\PIM.Android\PIM.Android.csproj", "{1A8F5264-3E15-4159-816A-5BE53CEFF62B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -56,6 +58,24 @@ Global
 		{0D2CC54A-4716-40B9-8110-453F528810FC}.Release|iPhone.Build.0 = Release|Any CPU
 		{0D2CC54A-4716-40B9-8110-453F528810FC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{0D2CC54A-4716-40B9-8110-453F528810FC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AdHoc|iPhone.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AdHoc|iPhone.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AdHoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AdHoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Release|iPhone.Build.0 = Release|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{2FB86946-4B3E-499A-9A73-770DEBFCC4DE}.AdHoc|iPhone.ActiveCfg = Debug|Any CPU
 		{2FB86946-4B3E-499A-9A73-770DEBFCC4DE}.AdHoc|iPhone.Build.0 = Debug|Any CPU
 		{2FB86946-4B3E-499A-9A73-770DEBFCC4DE}.AdHoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
@@ -192,8 +212,9 @@ Global
 		{43AFFF4E-792E-4F68-87E8-F1DE6E8AEF7A} = {3B5B0CD6-4A84-4E33-AF0C-D9CDB97EC012}
 		{85C0AA2E-380A-4BBC-873D-7BCF22DAAAC8} = {5EEAB3E3-2652-4FC6-96BE-02EF387D368F}
 		{4F743690-64BD-4B1F-BD75-872C910A94E2} = {5EEAB3E3-2652-4FC6-96BE-02EF387D368F}
+		{1A8F5264-3E15-4159-816A-5BE53CEFF62B} = {5EEAB3E3-2652-4FC6-96BE-02EF387D368F}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\PersonalInfoManager.Touch\PIM.Touch.csproj
+		StartupItem = ..\PIM.Android\PIM.Android.csproj
 	EndGlobalSection
 EndGlobal
