@@ -16,11 +16,10 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 	public partial class CalendarView : MXTouchViewController<CalendarListModel>
 	{
 		public override void Render() 
-		{
+		{ 
 			_events = Model.Events;
 
-			if (NavigationController != null)
-				NavigationController.SetNavigationBarHidden(true, false);
+			BuildAgendaTableView();
 		}
 
 		public CalendarView() : base() 
@@ -77,9 +76,14 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 			}
 			_tableView.DataSource = new TableViewDataSource(sectionedEventLists);
 			_tableView.Delegate = new TableViewDelegate(sectionedEventLists);
+			return true;
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
 
 			_tableView.ReloadData();
-			return true;
 		}
 
 		UITableView _tableView;
