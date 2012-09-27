@@ -33,30 +33,43 @@ namespace dotDialog.Sample.PersonalInfoManger
 				         select individual).FirstOrDefault();
 			}
 			else { Console.WriteLine("Failed to deserlize Tasks when looking up an individual one"); }
-
-			string vp = ViewPerspective.Default;
+			
 			switch (crudOperation)
 			{
-			case "Create":
+			case ViewPerspective.Default:
+				break; //nothing to do
+			case ViewPerspective.Create:
 				Model = new Task();
-				vp = ViewPerspective.Create;
 				break;
-			case "Update":
-				vp = ViewPerspective.Update;
-				if (Model == null) { Console.WriteLine("WARNING: Controller can't find task for update"); }
+			case ViewPerspective.Update:
+				if (Model == null) { Console.WriteLine("WARNING: Controller can't find contact for update"); }
+				break;
+			case ViewPerspective.Delete:
+				//TODO:  Implement Delete CRUD operation
+				Console.WriteLine("DELETE is not implemented for contact yet");
+				MXContainer.Instance.Redirect(TaskListController.Uri);
+				break;
+			default:
+				Console.WriteLine("Unexpected crud operation string value of: " + crudOperation);
+				crudOperation = ViewPerspective.Default; //set to default if unknown
 				break;
 			}
-			if (Model == null) { vp = TaskController.NoData; }
+			if (Model == null && crudOperation != ViewPerspective.Create)  
+			{
+				Console.WriteLine(string.Format("Null Model, overriding crud from \"{0}\" to \"{1}\"", 
+				                                crudOperation, TaskController.NoData));
+				crudOperation = TaskController.NoData;
+			}
 			
-			return vp;
+			return crudOperation;
 		}
 
-		public static string Uri(string id) { return baseUri + id; }
+		public static string Uri(string id) { return Uri(id, ViewPerspective.Default); }
 		public static string Uri(string id, string crud) 
 		{ 
 			return string.Format("{0}{1}/{2}", baseUri, id, crud);
 		}
-		public static string UriForNew() { return Uri("0", "Create"); }
+		public static string UriForNew() { return Uri("0", ViewPerspective.Create); }
 		
 		public static void RegisterUris(MXApplication theApp)
 		{

@@ -10,7 +10,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 	{
 		public override string  Load(Dictionary<string,string> parameters) 
 		{ 
-			string crudOperation = "Read";
+			string crudOperation = ViewPerspective.Default;
 			parameters.TryGetValue(ContactController.crudKey, out crudOperation);
 			
 			string id = string.Empty;
@@ -30,29 +30,42 @@ namespace dotDialog.Sample.PersonalInfoManger
 			}
 			else { Console.WriteLine("Failed to deserlize Contacts when looking up an individual one"); }
 			
-			string vp = ViewPerspective.Default;
 			switch (crudOperation)
 			{
-			case "Create":
+			case ViewPerspective.Default:
+				break; //nothing to do
+			case ViewPerspective.Create:
 				Model = new Contact();
-				vp = ViewPerspective.Create;
 				break;
-			case "Update":
-				vp = ViewPerspective.Update;
+			case ViewPerspective.Update:
 				if (Model == null) { Console.WriteLine("WARNING: Controller can't find contact for update"); }
 				break;
+			case ViewPerspective.Delete:
+				//TODO:  Implement Delete CRUD operation
+				Console.WriteLine("DELETE is not implemented for contact yet");
+				MXContainer.Instance.Redirect(ContactListController.Uri);
+				break;
+			default:
+				Console.WriteLine("Unexpected crud operation string value of: " + crudOperation);
+				crudOperation = ViewPerspective.Default; //set to default if unknown
+				break;
 			}
-			if (Model == null) { vp = ContactController.NoData; }
-			
-			return vp;
+			if (Model == null && crudOperation != ViewPerspective.Create) 
+			{
+				Console.WriteLine(string.Format("Null Model, overriding crud from \"{0}\" to \"{1}\"", 
+				                                crudOperation, ContactController.NoData));
+				crudOperation = ContactController.NoData;
+			}
+
+			return crudOperation;
 		}
 
-		public static string Uri(string id) { return baseUri + id; }
+		public static string Uri(string id) { return Uri(id, ViewPerspective.Default); }
 		public static string Uri(string id, string crud) 
 		{ 
 			return string.Format("{0}{1}/{2}", baseUri, crud, id);
 		}
-		public static string UriForNew() { return Uri("0", "Create"); }
+		public static string UriForNew() { return Uri("0", ViewPerspective.Create); }
 		
 		
 		public static void RegisterUris(MXApplication theApp)
