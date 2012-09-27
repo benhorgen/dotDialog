@@ -6,6 +6,7 @@ using MonoTouch.Dialog;
 using MonoTouch.Dialog.AddOn;
 
 using System.Drawing;
+using MonoCross.Navigation;
 
 
 namespace dotDialog.Sample.PersonalInfoManger.Touch
@@ -15,16 +16,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 		public CalendarEventUpdateView() : base(UITableViewStyle.Grouped, null, true) { }
 		public CalendarEventUpdateView(string buttonText) : base(UITableViewStyle.Grouped, null, true) 
 		{ 
-			_buttonSection = new Section();
-			var glassButton = new GlassButton(new RectangleF(0, 0, 300, 44));
-			glassButton.SetTitle("Delete", UIControlState.Normal);
-			glassButton.TouchUpInside += DeleteButton_Click;
-			UIViewElement buttonElement = new UIViewElement(string.Empty, glassButton, true);
-			buttonElement.Flags = UIViewElement.CellFlags.DisableSelection | UIViewElement.CellFlags.Transparent;
-			_buttonSection.Add(buttonElement);
-
-
-			var button = new UIBarButtonItem(buttonText, UIBarButtonItemStyle.Done, null);
+			button = new UIBarButtonItem(buttonText, UIBarButtonItemStyle.Done, null);
 			button.Clicked += delegate(object sender, EventArgs e) { BarButton_Click(button); };
 			NavigationItem.SetRightBarButtonItem(button, true);		
 		}
@@ -33,12 +25,19 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 		{ 
 			sections = CalendarEventUpdateDialogSections.BuildDialogSections(Model);
 
-			sections.Add(_buttonSection);
-
 			Root = new RootElement("Edit Event") { sections };
+
+			// add a delete button if editing an existing calendar event
+			if (button.Title == SaveButtonText)
+			{
+				var deleteButton = GlassButtonExtension.CreateGlassButton("Delete", UIColor.Red);
+				deleteButton.TouchUpInside += DeleteButton_Click;
+				var buttonElement = GlassButtonExtension.CreateGlassButtonElement(deleteButton);
+				Section buttonSection = new Section() { buttonElement };
+				Root.Add(buttonSection);
+			}
 		}
 		List<Section>  sections;
-		Section _buttonSection;
 
 		public override void ViewWillAppear (bool animated)
 		{
@@ -51,7 +50,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 		{
 			CalendarEventUpdateDialogSections.SaveDialogElementsToModel(Model, sections);
 
-			bool createNew = (button.Title == "Create");
+			bool createNew = (button.Title == CreateButtonText);
 			bool success = CalendarListController.SaveEventToCalendar(Model, createNew, true);
 
 			if (success)
@@ -59,20 +58,24 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 			else
 				new UIAlertView("Error", "Failed to save event", null, "Ok", null).Show();
 		}
+		UIBarButtonItem button;
 
 		private void DeleteButton_Click(object o, EventArgs e)
 		{
-			//TODO:  Replace with actual delete command (probably in the controller through)
 			new UIAlertView("Calendar event would be deleted", string.Empty, null, "Ok", null).Show();
 
+			var deleteUri = CalendarEventController.Uri(Model.Id, ViewPerspective.Delete);
 			new System.Threading.Thread (() => 
 			{
 				using (new MonoTouch.Foundation.NSAutoreleasePool()) 
 				{
-					MXTouchContainer.Navigate(CalendarListController.Uri);
+					MXTouchContainer.Navigate(deleteUri);
 				}
 			}).Start ();
 		}
+
+		public static string SaveButtonText = "Save";
+		public static string CreateButtonText = "Create";
 	}
 }
 
