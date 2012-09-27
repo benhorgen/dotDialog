@@ -62,9 +62,9 @@ namespace dotDialog.Sample.PersonalInfoManger
 		{
 			if (sections != null)
 			{
-				foreach (Section section in sections)
+				for(int i = 0; i < sections.Count; i++)
 				{
-					foreach (Element e in section)
+					foreach (Element e in sections[i])
 					{
 						if (e.Caption == "Type") { t.Type = TypeOptions[((RootElement)e).RadioSelected]; }
 						else if (e.Caption == "Start Time")
