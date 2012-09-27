@@ -10,6 +10,7 @@ using MonoCross.Navigation;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
+using MonoTouch.Dialog.AddOn;
 
 namespace dotDialog.Sample.PersonalInfoManger.Touch
 {
@@ -20,7 +21,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 			// build action sheet
 			var button = new UIBarButtonItem(UIBarButtonSystemItem.Edit );
 			button.Clicked += delegate(object sender, EventArgs e) { 
-				MXTouchContainer.Navigate(CalendarEventController.Uri(Model.Id, CalendarEventController.EventEdit)); 
+				MXTouchContainer.Navigate(CalendarEventController.Uri(Model.Id, ViewPerspective.Update)); 
 			};
 			NavigationItem.SetRightBarButtonItem(button, true);		
 		}
@@ -32,8 +33,13 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 			
 			Root = new RootElement("Event");
 			var sections = CalendarEventDialogSections.CreateEventDetailsSection(Model);
-
 			Root.Add(sections);
+
+			string updateUri = CalendarEventController.Uri(Model.Id, ViewPerspective.Update);
+			var editButton = GlassButtonExtension.CreateGlassButton("Edit Event");
+			editButton.TouchUpInside += (sender, e) => { MXTouchContainer.Navigate(updateUri); };
+			Section buttonSection = new Section() { editButton };
+			Root.Add(buttonSection);
 		}
 
 		class TableViewStringDataSource : UITableViewDataSource
@@ -75,32 +81,6 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 
 			public override int NumberOfSections(UITableView tableView) { return 1; }
 			public override string TitleForHeader(UITableView tableView, int section) { return string.Empty; }		
-		}
-
-		private UILabel GetLabel(UILabel last)
-		{
-			UILabel label = new UILabel() {
-						Font = UIFont.SystemFontOfSize(15),
-						AdjustsFontSizeToFitWidth = true,
-			};
-
-			const float height = 44;
-			const float width = 280;
-			const float xLoc = 10;
-			float yLoc = 0;
-
-			if (last != null) { yLoc = last.Frame.Bottom; }
-			label.Frame = new RectangleF(xLoc,yLoc,width,height);
-
-			return label;
-		}
-
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-
-			if (NavigationController != null)
-				NavigationController.NavigationBarHidden = false;
 		}
 	}
 }

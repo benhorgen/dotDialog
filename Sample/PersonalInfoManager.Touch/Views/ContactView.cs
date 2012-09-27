@@ -11,6 +11,8 @@ using MonoTouch.Foundation;
 using MonoCross.Touch;
 using MonoCross.Navigation;
 
+using MonoTouch.Dialog.AddOn;
+
 namespace dotDialog.Sample.PersonalInfoManger.Touch
 {
 	public partial class ContactView : MXTouchDialogView<Contact>
@@ -49,6 +51,14 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 				}
 			}
 			Root.Add(sections);
+
+			var button = GlassButtonExtension.CreateGlassButton("Edit Contact");
+			button.TouchUpInside += (sender, e) => { 
+				MXTouchContainer.Navigate(ContactController.Uri(Model.Id, ViewPerspective.Update));
+			};
+			var be = GlassButtonExtension.CreateGlassButtonElement(button);
+			Section buttonSection = new Section() { be };
+			Root.Add(buttonSection);
 		}
 
 		void InitiateNewEmail(string email)
@@ -58,8 +68,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 				{
 					try {
 						new NSObject().InvokeOnMainThread( () => 
-						                                  //TODO: Replace the Model.Email with the unique email address
-						                                  UIApplication.SharedApplication.OpenUrl(new NSUrl("mailto:" + email))); 
+                              UIApplication.SharedApplication.OpenUrl(new NSUrl("mailto:" + email))); 
 					}
 					catch (Exception ex) { Console.WriteLine("Exception occurred trying to email your contact:\r\n" + ex); }
 				}
@@ -90,16 +99,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 					var buttons = new string[] {"OK"};
 					phoneCallAlertView = new UIAlertView("Dial", "Call " + name, new PhoneAlertDelegate(phone), "Cancel", buttons);
 
-					try
-					{
-						new System.Threading.Thread (() => 
-						{
-							using (new MonoTouch.Foundation.NSAutoreleasePool()) 
-							{
-								phoneCallAlertView.Show(); 
-							}
-						}).Start();
-					}
+					try { phoneCallAlertView.Show(); }
 					catch (Exception ex)
 					{
 						Debug.WriteLine("Following exception occurred while displaying dialing dialog:\r\n" + ex);
@@ -152,7 +152,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 					MXTouchContainer.Navigate(CalendarEventController.UriForNew());
 					break;
 				case 1:
-					MXTouchContainer.Navigate(TaskController.Uri(Model.Id));
+					MXTouchContainer.Navigate(TaskController.UriForNew());
 					break;
 				default:
 					Console.WriteLine("Unexpected args.ButtonIndex value of: " + args.ButtonIndex);
