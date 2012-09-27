@@ -62,17 +62,20 @@ namespace dotDialog.Sample.PersonalInfoManger
 			{
 				if (File.Exists(filePath)) 
 				{  	
-					// open byte stream to decrypted stream
-					FileStream stream = File.OpenRead(filePath);
-					
-					byte[] xmlBytes = new byte[stream.Length];
-					int i = stream.Read(xmlBytes, 0, xmlBytes.Length);
-					if (i < xmlBytes.Length)
-					{
-						Debug.WriteLine("Reading additional bytes from: " + filePath);
-						stream.Read(xmlBytes, i, xmlBytes.Length - i);
-					}
+					byte[] xmlBytes = null;
 
+					// open byte stream to decrypted stream
+					using (FileStream stream = File.OpenRead(filePath))
+					{
+						xmlBytes = new byte[stream.Length];
+						int i = stream.Read(xmlBytes, 0, xmlBytes.Length);
+						if (i < xmlBytes.Length)
+						{
+							Debug.WriteLine("Reading additional bytes from: " + filePath);
+							stream.Read(xmlBytes, i, xmlBytes.Length - i);
+						}
+						stream.Close();
+					}
 					Debug.WriteLine("Decrypted bytes are: " + Encoding.UTF8.GetString(xmlBytes));
 					returnBytes = xmlBytes;
 				}
@@ -174,6 +177,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 			if (!Directory.Exists(pathonly)) { Directory.CreateDirectory(pathonly); }
 			string uepath = Path.Combine(pathonly, filePath.Substring(fileStringStart));
 			File.WriteAllBytes(uepath, bytes);
+
 #endif
 			try { File.WriteAllBytes(filePath, bytes); }
 			catch (Exception e) 
