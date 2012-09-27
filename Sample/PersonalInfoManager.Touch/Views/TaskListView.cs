@@ -152,8 +152,8 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 				else if (_rows.Count > indexPath.Row && _rows[indexPath.Row] != null)
 				{
 					row = _rows[indexPath.Row];
-					text = row.Date.ToString("d");
-					subtext = row.Description;
+					text = row.Description;
+					subtext = row.Date.ToString("d");
 
 					cell = tableView.DequeueReusableCell(skey);
 					if (cell != null)
@@ -190,7 +190,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 
 					// TODO:  Replace under contruction with the correct ones
 					string id = _rows[indexPath.Row].Id.ToString();
-					string uri = "Task/" + id;
+					string uri = TaskController.Uri(id);
 
 					new System.Threading.Thread (() => 
 					{
