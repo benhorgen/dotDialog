@@ -37,20 +37,20 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 			MXTouchContainer.AddView<ContactListModel>(new NoConnectionContactListView(ContactListView.ViewTitle, noDataMsg, 0.85f), "No Data");
 			
 			MXTouchContainer.AddView<Contact>(new ContactView());
-			MXTouchContainer.AddView<Contact>(new ContactEditView(), ViewPerspective.Update);
-			MXTouchContainer.AddView<Contact>(new ContactEditView(), ViewPerspective.Create);
+			MXTouchContainer.AddView<Contact>(new ContactEditView(ContactEditView.CreateButtonText), ViewPerspective.Create);
+			MXTouchContainer.AddView<Contact>(new ContactEditView(ContactEditView.SaveButtonText), ViewPerspective.Update);
 
 			// Add Calendar related views
 			MXTouchContainer.AddView<CalendarListModel>(new CalendarView());			
 			MXTouchContainer.AddView<CalEvent>(new CalendarEventView());
-			MXTouchContainer.AddView<CalEvent>(new CalendarEventUpdateView("Create"), ViewPerspective.Create);			
-			MXTouchContainer.AddView<CalEvent>(new CalendarEventUpdateView("Save"), ViewPerspective.Update);
+			MXTouchContainer.AddView<CalEvent>(new CalendarEventUpdateView(CalendarEventUpdateView.CreateButtonText), ViewPerspective.Create);			
+			MXTouchContainer.AddView<CalEvent>(new CalendarEventUpdateView(CalendarEventUpdateView.SaveButtonText), ViewPerspective.Update);
 
 			// Add Task related views
 			MXTouchContainer.AddView<List<Task>>(new TaskListView());
 			MXTouchContainer.AddView<Task>(new TaskView());
-			MXTouchContainer.AddView<Task>(new TaskEditView("Create"), ViewPerspective.Create);
-			MXTouchContainer.AddView<Task>(new TaskEditView("Save"), ViewPerspective.Update);
+			MXTouchContainer.AddView<Task>(new TaskEditView(TaskEditView.CreateButtonText), ViewPerspective.Create);
+			MXTouchContainer.AddView<Task>(new TaskEditView(TaskEditView.SaveButtonText), ViewPerspective.Update);
 
 			MXTouchContainer.AddView<object>(new TabBar((MXTouchContainer)MXTouchContainer.Instance));
 
