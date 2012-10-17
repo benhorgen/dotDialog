@@ -34,10 +34,7 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MultiLineEntrySubTextItem.cs" />
@@ -45,7 +42,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MonoCross\Android.Dialog\Android.Dialog.csproj">
+    <ProjectReference Include="..\MonoCross\Android.Dialog\Android.Dialog.csproj">
       <Project>{33044c7b-47a4-4113-a61a-eb429407f818}</Project>
       <Name>Android.Dialog</Name>
     </ProjectReference>

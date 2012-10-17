@@ -65,11 +65,11 @@
     <Compile Include="AbstractViews\TaskEdiDialogSections.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MonoCross\Android.Dialog\Android.Dialog.csproj">
+    <ProjectReference Include="..\..\MonoCross\Android.Dialog\Android.Dialog.csproj">
       <Project>{33044c7b-47a4-4113-a61a-eb429407f818}</Project>
       <Name>Android.Dialog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
+    <ProjectReference Include="..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
       <Project>{0d2cc54a-4716-40b9-8110-453f528810fc}</Project>
       <Name>MonoCross.Navigation.MD</Name>
     </ProjectReference>

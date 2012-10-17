@@ -7,3 +7,6 @@
 [submodule "MonoCross_1.02"]
 	path = MonoCross_1.02
 	url = https://github.com/benhorgen/MonoCross-Example.git
+[submodule "MonoCross"]
+	path = MonoCross
+	url = https://github.com/ToeJam/MonoCross.git
