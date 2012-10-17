@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +45,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="AbstractViews\CalendarDialogSections.cs" />
+    <Compile Include="AbstractViews\TaskListDialogSections.cs" />
     <Compile Include="Controllers\CalendarEventController.cs" />
     <Compile Include="Controllers\ContactListController.cs" />
     <Compile Include="Controllers\TaskListController.cs" />
@@ -63,13 +65,17 @@
     <Compile Include="AbstractViews\TaskEdiDialogSections.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Android.Dialog\Android.Dialog.csproj">
-      <Project>{33044C7B-47A4-4113-A61A-EB429407F818}</Project>
+    <ProjectReference Include="..\..\..\MonoCross\Android.Dialog\Android.Dialog.csproj">
+      <Project>{33044c7b-47a4-4113-a61a-eb429407f818}</Project>
       <Name>Android.Dialog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
-      <Project>{0D2CC54A-4716-40B9-8110-453F528810FC}</Project>
+    <ProjectReference Include="..\..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
+      <Project>{0d2cc54a-4716-40b9-8110-453f528810fc}</Project>
       <Name>MonoCross.Navigation.MD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Android.Dialog-AddOn\Android.Dialog-AddOn.csproj">
+      <Project>{cdc2dd8f-d3e2-4ecd-bf88-342577d00931}</Project>
+      <Name>Android.Dialog-AddOn</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

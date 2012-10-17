@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,7 @@
     <ProjectGuid>{1A8F5264-3E15-4159-816A-5BE53CEFF62B}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>dotDialog.Sample.PersonalInfoManger.Android</RootNamespace>
+    <RootNamespace>dotDialog.Sample.PersonalInfoManger.Droid</RootNamespace>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -16,7 +16,10 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>PIM.Android</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -40,23 +43,46 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SplashActivity.cs" />
-    <Compile Include="Views\ContactListActivity.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Views\CalendarEventUpdateView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\CalendarEventView.cs" />
+    <Compile Include="Views\CalendarView.cs" />
+    <Compile Include="Views\ContactEditView.cs" />
+    <Compile Include="Views\ContactListView.cs" />
     <Compile Include="Views\ContactActivity.cs" />
+    <Compile Include="Views\ContactView.cs" />
+    <Compile Include="DetailActivity.cs" />
+    <Compile Include="Views\NoDataConnectionView.cs" />
+    <Compile Include="Views\TaskEditView.cs" />
+    <Compile Include="Views\TaskListView.cs" />
+    <Compile Include="Views\TaskView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Menu\ContactListMenu.xml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Menu\ContactMenu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\values-v11\Styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -83,9 +109,10 @@
     <AndroidResource Include="Resources\layout\dialog_selectlist.xml" />
     <AndroidResource Include="Resources\layout\dialog_selectlistfield.xml" />
     <AndroidResource Include="Resources\layout\dialog_textarea.xml" />
-    <AndroidResource Include="Resources\layout\dialog_textfieldbelow.xml" />
+    <AndroidResource Include="Resources\layout\dialog_textfieldbelow.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_textfieldright.xml" />
-    <AndroidResource Include="Resources\drawable\dialog_expander_ic_minimized.9.png" />
     <AndroidResource Include="Resources\drawable-hdpi\spinner_default_holo_dark.9.png" />
     <AndroidResource Include="Resources\drawable-hdpi\spinner_default_holo_light.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\spinner_default_holo_dark.9.png" />
@@ -98,24 +125,106 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Views\" />
+    <AndroidJavaLibrary Include="SupportLib\android-support-v4.jar" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\MonoCross\Android.Dialog\Android.Dialog.csproj">
+      <Project>{33044c7b-47a4-4113-a61a-eb429407f818}</Project>
+      <Name>Android.Dialog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MonoCross\MonoCross.Droid\MonoCross.Droid.csproj">
+      <Project>{b8448676-c9fe-42a3-a30b-f2ffa096e7d9}</Project>
+      <Name>MonoCross.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
+      <Project>{0d2cc54a-4716-40b9-8110-453f528810fc}</Project>
+      <Name>MonoCross.Navigation.MD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersonalInfoManager\PIM.M4A.csproj">
       <Project>{408C1B45-7795-4FB7-9633-789AF32663D3}</Project>
       <Name>PIM.M4A</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
-      <Project>{0D2CC54A-4716-40B9-8110-453F528810FC}</Project>
-      <Name>MonoCross.Navigation.MD</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Droid\MonoCross.Droid.csproj">
-      <Project>{B8448676-C9FE-42A3-A30B-F2FFA096E7D9}</Project>
-      <Name>MonoCross.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Android.Dialog\Android.Dialog.csproj">
-      <Project>{33044C7B-47A4-4113-A61A-EB429407F818}</Project>
-      <Name>Android.Dialog</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\CalendarEventMenu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\content_discard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\content_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\content_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\dialog_expander_ic_minimized.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\navigation_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\content_discard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\content_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\content_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\navigation_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\content_discard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\content_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\content_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\navigation_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\EditMenu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\CreateMenu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\TaskListMenu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\social_add_person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\social_add_person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\social_add_person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\detail.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\CalendarMenu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\content_new_event.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\content_new_event.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\content_new_event.png" />
   </ItemGroup>
 </Project>

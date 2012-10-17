@@ -1,72 +1,60 @@
-
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
+using Android.Telephony;
 using MonoCross.Droid;
 using Android.Dialog;
 
-using dotDialog.Sample.PersonalInfoManger;
-
-
-namespace dotDialog.Sample.PersonalInfoManger.Android
+namespace dotDialog.Sample.PersonalInfoManger.Droid
 {
-	[Activity (Label = "Contact Details")]			
-	public class ContactActivity : MXDialogActivityView<Contact>
-	{
-		public override void Render ()
-		{
-			var dialogSection = ContactDialogSections.CreateContactDetailSections(Model);
+    [Activity(Label = "Contact Details")]
+    public class ContactActivity : MXDialogFragmentView<Contact>
+    {
+        public override void Render()
+        {
+            var dialogSection = ContactDialogSections.CreateContactDetailSections(Model);
 
-			var sections = ContactDialogSections.CreateContactDetailSections(Model);
-			if (sections != null && sections.Length > 2)
-			{
-				// add a click handler to the Phone numbers
-				foreach(Element e in sections[0])
-				{
-					StringElement se = e as StringElement;
-					//se.Tapped += () => { DisplayPhoneCallDialog(se); };
-				}
-				
-				for(int i = 0; i < sections[1].Count; i++)
-				{
-					StringElement se = sections[1][i] as StringElement;
-					se.Click += (object sender, EventArgs e) => { StartEmailIntent(se.Value); };
-				}
-			}
+            var sections = ContactDialogSections.CreateContactDetailSections(Model);
+            if (sections != null && sections.Length > 2)
+            {
+                // add a click handler to the Phone numbers
+                foreach (var se in sections[0].Select(e => e as StringElement))
+                {
+                    var local = se;
+                    se.Tapped += (o, ev) => DisplayPhoneCallDialog(local.Value);
+                }
 
-			this.Root = new RootElement(null) { dialogSection };	
-		}
+                // add a click handler to the Phone numbers
+                foreach (var se in sections[1].Select(e => e as StringElement))
+                {
+                    var local = se;
+                    se.Click += (sender, e) => StartEmailIntent(local.Value);
+                }
+            }
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+            this.Root = new RootElement(null) { dialogSection };
+        }
 
-			// Create your application here
-		}
+        private void StartEmailIntent(string email)
+        {
+            /* Create the Intent */
+            Intent emailIntent = new Intent(Intent.ActionSend);
 
-		private void StartEmailIntent(string email)
-		{
-			/* Create the Intent */
-			//Intent emailIntent = new Intent(Android.Content.Intent.ActionSend);
-			
-			/* Fill it with Data */
-			//emailIntent.SetType("plain/text");
-			//emailIntent.PutExtra(Android.Content.Intent.ExtraEmail, new String[]{email});
-			//emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Default subject");
-			//emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Default text");
-			
-			/* Send it off to the Activity-Chooser */
-			//StartActivity(Intent.CreateChooser(emailIntent, "Send mail..."));
-		}
-	}
+            /* Fill it with Data */
+            emailIntent.SetType("plain/text");
+            emailIntent.PutExtra(Intent.ExtraEmail, new[] { email });
+            emailIntent.PutExtra(Intent.ExtraSubject, "Default subject");
+            emailIntent.PutExtra(Intent.ExtraText, "Default text");
+
+            /* Send it off to the Activity-Chooser */
+            StartActivity(Intent.CreateChooser(emailIntent, "Send mail"));
+        }
+
+        private void DisplayPhoneCallDialog(string phone)
+        {
+            string phoneNumber = PhoneNumberUtils.FormatNumber(phone);
+            var newIntent = new Intent(Intent.ActionDial, Android.Net.Uri.Parse("tel:" + phoneNumber));
+            StartActivity(newIntent);
+        }
+    }
 }
-

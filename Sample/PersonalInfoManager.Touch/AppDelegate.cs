@@ -54,7 +54,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Touch
 
 			MXTouchContainer.AddView<object>(new TabBar((MXTouchContainer)MXTouchContainer.Instance));
 
-			// Kick of the application with a naviation call.
+			// Kick off the application with a naviation call.
 			MXTouchContainer.Navigate(MXContainer.Instance.App.NavigateOnLoad);
 			
 			return true;

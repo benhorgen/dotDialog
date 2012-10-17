@@ -14,8 +14,8 @@ namespace dotDialog.Sample.PersonalInfoManger
 		public static Section[] BuildDialogSections(Task t)
 		{
 			// init to default values
-			DateTime date;
-			string description = string.Empty;
+			DateTime? date = null;
+			string description = null;
 			
 			// update values if a contact was passed in
 			if (t != null)
@@ -27,12 +27,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 			// build dialog section
 			var name = new Section();
 			name.Add(new DateTimeElement("Date", date));
-#if MONOTOUCH
 			name.Add(new MultiLineEntrySubTextItem("Description", description ?? string.Empty, true) { Rows = 4 });
-#endif
-#if ANDROID
-			name.Add(new MultilineEntryElement("Description", description ?? string.Empty));
-#endif
 		
 			return new Section[] { name };
 		}
@@ -50,12 +45,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 					}
 					else if (el.Caption == "Description")
 					{
-#if MONOTOUCH
 						t.Description = ((MultiLineEntrySubTextItem)el).Value;
-#endif
-#if ANDROID
-						t.Description = ((MultilineEntryElement)el).Value;
-#endif
 					}
 				}
 			}
@@ -65,4 +55,3 @@ namespace dotDialog.Sample.PersonalInfoManger
 		}
 	}
 }
-

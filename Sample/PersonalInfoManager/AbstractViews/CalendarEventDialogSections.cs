@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 #if MONOTOUCH
 using MonoTouch.Dialog;
@@ -16,7 +13,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 	{
 		public static List<Section> CreateEventDetailsSection(CalEvent theEvent)
 		{ 
-			List<Section> sections = new List<Section>();
+			var sections = new List<Section>();
 
 			var section = new Section();
 			sections.Add(section);
@@ -39,4 +36,3 @@ namespace dotDialog.Sample.PersonalInfoManger
 		}
 	}
 }
-
