@@ -105,6 +105,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Droid
 
         public override void OnListItemClick(ListView p0, View p1, int position, long p3)
         {
+            if (Model == null || !Model.Contacts.Any()) return;
             var id = ((DialogAdapter)p0.Adapter).ElementAtIndex(position).Tag.ToString();
             string uri = ContactController.Uri(id);
             MXContainer.Navigate(uri);

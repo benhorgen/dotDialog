@@ -26,7 +26,7 @@ namespace dotDialog.Sample.PersonalInfoManger.Droid
             base.OnListItemClick(p0, p1, position, id);
             if (Model == null || Model.Count == 0)
                 return;
-            string taskId = Model[position].Id;
+            string taskId = Model[position - 1].Id;
             string uri = TaskController.Uri(taskId);
             MXContainer.Navigate(uri);
         }
