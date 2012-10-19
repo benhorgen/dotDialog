@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTouch.Dialog", "MonoTou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android.Dialog", "Android.Dialog\Android.Dialog.csproj", "{33044C7B-47A4-4113-A61A-EB429407F818}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webkit.Dialog", "MonoCross_1.02\MonoCross\Webkit.Dialog\Webkit.Dialog.csproj", "{6AABF146-0ADE-45CF-AF2C-AB11456A82BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webkit.Dialog", "MonoCross\Webkit.Dialog\Webkit.Dialog.csproj", "{6AABF146-0ADE-45CF-AF2C-AB11456A82BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
