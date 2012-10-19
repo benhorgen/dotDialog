@@ -14,7 +14,7 @@ namespace dotDialog.Sample.PersonalInfoManger
 		public static Section[] BuildDialogSections(Task t)
 		{
 			// init to default values
-			DateTime? date = null;
+			DateTime date = DateTime.Now;
 			string description = null;
 			
 			// update values if a contact was passed in

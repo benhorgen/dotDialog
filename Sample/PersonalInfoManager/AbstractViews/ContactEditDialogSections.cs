@@ -35,18 +35,34 @@ namespace dotDialog.Sample.PersonalInfoManger
 
             var name = new Section() { Caption = "Individual" };
             sections.Add(name);
-            name.Add(new EntryElement("First Name", null, fName) { KeyboardType = UIKeyboardType.NamePhonePad });
-            name.Add(new EntryElement("Last Name", null, lName) { KeyboardType = UIKeyboardType.NamePhonePad });
+            name.Add(new EntryElement("First Name", null, fName) 
+#if ANDROID
+			         { KeyboardType = UIKeyboardType.NamePhonePad }
+#endif
+			);
+            name.Add(new EntryElement("Last Name", null, lName) 
+#if ANDROID
+			         { KeyboardType = UIKeyboardType.NamePhonePad }
+#endif
+			);
 
             var phoneSec = new Section() { Caption = "Phone Numbers" };
             sections.Add(phoneSec);
             //TODO: Add a button which adds a new row
-            phoneSec.Add(new EntryElement("Work", null, phoneNumber) { KeyboardType = UIKeyboardType.PhonePad });
+            phoneSec.Add(new EntryElement("Work", null, phoneNumber) 
+#if ANDROID
+		             { KeyboardType = UIKeyboardType.PhonePad }
+#endif
+			);
 
             // email
             var emailSec = new Section() { Caption = "Email Addresses" };
             sections.Add(emailSec);
-            emailSec.Add(new EntryElement("Work", null, emailAddress) { KeyboardType = UIKeyboardType.EmailAddress });
+            emailSec.Add(new EntryElement("Work", null, emailAddress)
+#if ANDROID
+			             { KeyboardType = UIKeyboardType.EmailAddress }
+#endif
+			);
 
             // addresses
             var addressSec = new Section() { Caption = "Addresses" };
