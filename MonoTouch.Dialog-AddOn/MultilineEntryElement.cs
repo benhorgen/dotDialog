@@ -19,7 +19,20 @@ namespace MonoTouch.Dialog.AddOn
 		UITextView entry;
 		string placeholder;
 		static UIFont font = UIFont.BoldSystemFontOfSize (17);
-		
+
+
+		/// <summary>
+		/// Constructs an EntryElement with the given caption, placeholder and initial value.
+		/// </summary>
+		/// <param name="caption">
+		/// The caption to use
+		/// </param>
+		/// <param name="value">
+		/// Initial value.
+		/// </param>
+		public MultilineEntryElement(string caption, string value) : this(caption, null, value) { }
+
+
 		/// <summary>
 		/// Constructs an EntryElement with the given caption, placeholder and initial value.
 		/// </summary>
