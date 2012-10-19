@@ -18,6 +18,15 @@ A Dialog based micro framework: Platform bindings translate Element based object
 This is a work in progress, but one that was/is heavily contributed to by Sam Lippert.  Sam created Android.Dialog (or forked it) when we collaborated on a previous MonoCross project.  Sam proved this concept to me and the sample code demonstrates how I've since been leveraging it.
 
 
+The Sample App
+---------------
+The Personal Information Manager (PIM) sample app is located in the sample subfolder.  You must have Xamarin's Mono for Android toolset installed before opening either solution (in either Visual Studion or MonoDevelop).  The 'PersonalInfoManager.sln' file includes the MonoTouch sample also, so you'll need Xamarin's Mono for iOS installed too.
+
+This sample utilizes the MonoCross cross platform mobile application framework to help create a larger shared code base. An important note, this dialog framework can help accelerate development of basic screens, this is not a replacement for the rich UI created when developers directly harness the native UI APIs.  MonoCross allows us to share UI on some screens and write platform specific UI for others.
+
+This and other topics are covered in a book I coauthored,  "Professional Cross-Platform Mobile Development using C#" (Published Feb. 2012)
+
+
 
 This repo includes 3 submodules
 --------------------------------
@@ -26,13 +35,6 @@ Android.Dialog by githubber @sam-lippert
 MonoTouch.Dialg by githubber  @migueldeicaza
 
 MonoCross hosted by githubber @toejam
-
-
-
-The Personal Information Manager sample (PIM) is located in the sample subfolder.  You must have Xamarin's Mono for Android toolset installed before opening either solution (in either Visual Studion or MonoDevelop).  The 'PersonalInfoManager.sln' file includes the MonoTouch sample also, so you'll need Xamarin's Mono for iOS installed too.
-
-
-
 
 **After cloning the repo, don't forget to clone the submodules.  
 
