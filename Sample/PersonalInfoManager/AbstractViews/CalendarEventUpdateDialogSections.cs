@@ -56,23 +56,26 @@ namespace dotDialog.Sample.PersonalInfoManger
         {
             if (sections != null)
             {
-                foreach (var e in sections.SelectMany(section => section))
-                {
-                    if (e.Caption == "Type") { t.Type = TypeOptions[((RootElement)e).RadioSelected]; }
-                    else if (e.Caption == "Start Time")
-                    {
-                        var start = ((DateTimeElement)e).Value;
-                        t.StartTimeAsLong = Convert.ToDateTime(start).Ticks;
-                    }
-                    else if (e.Caption == "End Time")
-                    {
-                        var end = ((DateTimeElement)e).Value;
-                        t.EndTimeAsLong = Convert.ToDateTime(end).Ticks;
-                    }
-                    else if (e.Caption == "Subject") { t.Subject = ((EntryElement)e).Value; }
-                    else if (e.Caption == "Location") { t.Location = ((EntryElement)e).Value; }
-                    else if (e.Caption == "Priority") { t.Priority = PriorityOptions[((RootElement)e).RadioSelected]; }
-                }
+				for(int i = 0; i < sections.Count; i++)
+				{
+					foreach (Element e in sections[i])
+					{
+						if (e.Caption == "Type") { t.Type = TypeOptions[((RootElement)e).RadioSelected]; }
+						else if (e.Caption == "Start Time")
+						{
+							var start = ((DateTimeElement)e).Value;
+							t.StartTimeAsLong = Convert.ToDateTime(start).Ticks;
+						}
+						else if (e.Caption == "End Time")
+						{
+							var end = ((DateTimeElement)e).Value;
+							t.EndTimeAsLong = Convert.ToDateTime(end).Ticks;
+						}
+						else if (e.Caption == "Subject") { t.Subject = ((EntryElement)e).Value; }
+						else if (e.Caption == "Location") { t.Location = ((EntryElement)e).Value; }
+						else if (e.Caption == "Priority") { t.Priority = PriorityOptions[((RootElement)e).RadioSelected]; }
+					}
+				}
             }
 
             return true;

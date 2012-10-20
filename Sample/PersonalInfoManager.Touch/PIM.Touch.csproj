@@ -107,10 +107,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MT.csproj">
-      <Project>{0C3337B2-0B8A-4C0B-8330-3B81F5B96B9B}</Project>
-      <Name>MonoCross.Navigation.MT</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MonoTouch.Dialog\MonoTouch.Dialog\MonoTouch.Dialog.csproj">
       <Project>{3FFBFFF8-5560-4EDE-82E5-3FFDFBBA8A50}</Project>
       <Name>MonoTouch.Dialog</Name>
@@ -122,6 +118,10 @@
     <ProjectReference Include="..\PersonalInfoManager\PIM.MT.csproj">
       <Project>{2FB86946-4B3E-499A-9A73-770DEBFCC4DE}</Project>
       <Name>PIM.MT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MT.csproj">
+      <Project>{0C3337B2-0B8A-4C0B-8330-3B81F5B96B9B}</Project>
+      <Name>MonoCross.Navigation.MT</Name>
     </ProjectReference>
     <ProjectReference Include="..\MonoCross.Touch\MonoCross.Touch.csproj">
       <Project>{4F743690-64BD-4B1F-BD75-872C910A94E2}</Project>

@@ -124,21 +124,17 @@
     <AndroidJavaLibrary Include="SupportLib\android-support-v4.jar" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MonoCross\Android.Dialog\Android.Dialog.csproj">
-      <Project>{33044c7b-47a4-4113-a61a-eb429407f818}</Project>
-      <Name>Android.Dialog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MonoCross\MonoCross.Droid\MonoCross.Droid.csproj">
-      <Project>{b8448676-c9fe-42a3-a30b-f2ffa096e7d9}</Project>
-      <Name>MonoCross.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
-      <Project>{0d2cc54a-4716-40b9-8110-453f528810fc}</Project>
-      <Name>MonoCross.Navigation.MD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PersonalInfoManager\PIM.M4A.csproj">
       <Project>{408C1B45-7795-4FB7-9633-789AF32663D3}</Project>
       <Name>PIM.M4A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoCross.Droid\MonoCross.Droid.csproj">
+      <Project>{B8448676-C9FE-42A3-A30B-F2FFA096E7D9}</Project>
+      <Name>MonoCross.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MD.csproj">
+      <Project>{0D2CC54A-4716-40B9-8110-453F528810FC}</Project>
+      <Name>MonoCross.Navigation.MD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

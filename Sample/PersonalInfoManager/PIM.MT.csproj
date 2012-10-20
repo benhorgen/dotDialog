@@ -63,10 +63,6 @@
     <Compile Include="AbstractViews\ContactDialogSections.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MonoCross_1.02\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MT.csproj">
-      <Project>{0C3337B2-0B8A-4C0B-8330-3B81F5B96B9B}</Project>
-      <Name>MonoCross.Navigation.MT</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MonoTouch.Dialog\MonoTouch.Dialog\MonoTouch.Dialog.csproj">
       <Project>{3FFBFFF8-5560-4EDE-82E5-3FFDFBBA8A50}</Project>
       <Name>MonoTouch.Dialog</Name>
@@ -74,6 +70,10 @@
     <ProjectReference Include="..\..\MonoTouch.Dialog-AddOn\MonoTouch.Dialog-AddOn.csproj">
       <Project>{43AFFF4E-792E-4F68-87E8-F1DE6E8AEF7A}</Project>
       <Name>MonoTouch.Dialog-AddOn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoCross\MonoCross.Navigation\MonoCross.Navigation.MT.csproj">
+      <Project>{0C3337B2-0B8A-4C0B-8330-3B81F5B96B9B}</Project>
+      <Name>MonoCross.Navigation.MT</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
