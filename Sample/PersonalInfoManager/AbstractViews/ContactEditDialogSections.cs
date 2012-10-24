@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 #if MONOTOUCH
+using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using MonoTouch.Dialog.AddOn;
 #elif ANDROID
@@ -35,34 +36,18 @@ namespace dotDialog.Sample.PersonalInfoManger
 
             var name = new Section() { Caption = "Individual" };
             sections.Add(name);
-            name.Add(new EntryElement("First Name", null, fName) 
-#if ANDROID
-			         { KeyboardType = UIKeyboardType.NamePhonePad }
-#endif
-			);
-            name.Add(new EntryElement("Last Name", null, lName) 
-#if ANDROID
-			         { KeyboardType = UIKeyboardType.NamePhonePad }
-#endif
-			);
+			var ee = new EntryElement("First Name", null, fName);
+            name.Add(new EntryElement("First Name", null, fName) { KeyboardType = UIKeyboardType.NamePhonePad });
 
             var phoneSec = new Section() { Caption = "Phone Numbers" };
             sections.Add(phoneSec);
             //TODO: Add a button which adds a new row
-            phoneSec.Add(new EntryElement("Work", null, phoneNumber) 
-#if ANDROID
-		             { KeyboardType = UIKeyboardType.PhonePad }
-#endif
-			);
+			phoneSec.Add(new EntryElement("Work", null, phoneNumber) { KeyboardType = UIKeyboardType.PhonePad });
 
             // email
             var emailSec = new Section() { Caption = "Email Addresses" };
             sections.Add(emailSec);
-            emailSec.Add(new EntryElement("Work", null, emailAddress)
-#if ANDROID
-			             { KeyboardType = UIKeyboardType.EmailAddress }
-#endif
-			);
+            emailSec.Add(new EntryElement("Work", null, emailAddress) { KeyboardType = UIKeyboardType.EmailAddress });
 
             // addresses
             var addressSec = new Section() { Caption = "Addresses" };
