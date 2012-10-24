@@ -26,11 +26,6 @@ namespace dotDialog.Sample.PersonalInfoManger.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-
-            // assign a layout with an image
-            SetContentView(Resource.Layout.Main);
-
             // initialize app
             MXDroidContainer.Initialize(new App(), this);
             MXDroidContainer.NavigationHandler = NavigationHandler;
@@ -59,6 +54,11 @@ namespace dotDialog.Sample.PersonalInfoManger.Droid
 
             // navigate to first view
             MXContainer.Navigate(null, MXContainer.Instance.App.NavigateOnLoad);
+
+            base.OnCreate(bundle);
+
+            // assign a layout with an image
+            SetContentView(Resource.Layout.Main);
 
             _adapter = new ViewPagerAdapter(SupportFragmentManager);
             var pager = FindViewById<ViewPager>(Resource.Id.pager);
