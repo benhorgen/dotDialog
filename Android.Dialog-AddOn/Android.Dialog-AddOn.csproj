@@ -53,7 +53,7 @@
   </Target>
   -->
   <ItemGroup>
-    <ProjectReference Include="..\MonoCross\Android.Dialog\Android.Dialog.csproj">
+    <ProjectReference Include="..\Android.Dialog\Android.Dialog.csproj">
       <Project>{33044C7B-47A4-4113-A61A-EB429407F818}</Project>
       <Name>Android.Dialog</Name>
     </ProjectReference>
